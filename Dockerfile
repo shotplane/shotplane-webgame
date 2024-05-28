@@ -12,8 +12,8 @@ COPY nginx.conf     /etc/nginx/nginx.conf
 RUN mkdir -p        /usr/share/nginx/html
 COPY index.html     /usr/share/nginx/html/index.html
 COPY Build          /usr/share/nginx/html/Build
+COPY StreamingAssets          /usr/share/nginx/html/StreamingAssets
 COPY TemplateData   /usr/share/nginx/html/TemplateData
-COPY StreamingAssets   /usr/share/nginx/html/StreamingAssets
 COPY .vs            /usr/share/nginx/html/.vs
 
 # RUN gunzip /usr/share/nginx/html/Build/catpln.data.gz
