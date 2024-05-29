@@ -7,17 +7,11 @@
 #   
 FROM nginx:alpine AS RUNNER 
 
-COPY nginx.conf     /etc/nginx/nginx.conf
+WORKDIR /etc/nginx/conf.d
+COPY nginx.conf default.conf
 
-RUN mkdir -p        /usr/share/nginx/html
-COPY index.html     /usr/share/nginx/html/index.html
-COPY Build          /usr/share/nginx/html/Build
-COPY TemplateData   /usr/share/nginx/html/TemplateData
-
-# RUN gunzip /usr/share/nginx/html/Build/catpln.data.gz
-# RUN gunzip /usr/share/nginx/html/Build/catpln.framework.js.gz
-# RUN gunzip /usr/share/nginx/html/Build/catpln.wasm.gz
-
+WORKDIR /webgl
+COPY webgl/ .
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
